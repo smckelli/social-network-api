@@ -4,7 +4,7 @@ const {
 } = require('../models');
 
 const thoughtController = {
-    // get all pizzas
+    // get all thoughts
     getAllThoughts(req, res) {
         Thoughts.find({})
             .populate({
@@ -22,7 +22,7 @@ const thoughtController = {
             });
     },
 
-    // get one pizza by id
+    // get one thought by id
     getThoughtById({
         params
     }, res) {
@@ -34,7 +34,7 @@ const thoughtController = {
                 select: '-__v'
             })
             .select('-__v')
-            .then(dbPizzaData => {
+            .then(dbThoughtData => {
                 if (!dbThoughtData) {
                     res.status(404).json({
                         message: "No thoughts associated with this id!"
@@ -102,8 +102,8 @@ const thoughtController = {
             .catch(err => res.json(err));
     },
 
-    // delete pizza
-    deletePizza({
+    // delete thought
+    deleteThought({
         params
     }, res) {
         Thoughts.findOneAndDelete({
