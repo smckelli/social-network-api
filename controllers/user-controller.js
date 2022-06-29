@@ -97,4 +97,4 @@ const userController = {
     },
 };
 
-module.exports = thoughtController;
+module.exports = userController;
