@@ -50,19 +50,13 @@ const thoughtController = {
     },
 
     // createThought
-    createThoughts({
-        body
-    }, res) {
+    createThoughts({body}, res) {
         Thoughts.create(body)
-            .then(({
-                _id
-            }) => {
+            .then(({_id}) => {
                 return User.findOneAndUpdate({
                     _id: body.userId
                 }, {
-                    $push: {
-                        thoughts: _id
-                    }
+                    $push: {thoughts: _id}
                 }, {
                     new: true
                 });
@@ -103,29 +97,33 @@ const thoughtController = {
     },
 
     // delete thought
-    deleteThoughts({params}, res) {
-        Thoughts.findOneAndDelete({
-                _id: params.id
-            })
-                return User.findOneAndUpdate({
-                    _id: params.userId
-                }, 
-                { 
-                    $pull: {thoughts: params.Id}
-                }, {
-                    new: true
-                })
-            .then(dbUserData => {
-                if (!dbUserData) {
-                    res.status(404).json({
-                        message: 'No user found with this id!'
-                    });
-                    return;
-                }
-                res.json(dbUserData);
-            })
-            .catch(err => res.json(err));
+    deleteThoughts({ params }, res) {
+        Thoughts.findOneAndDelete({ _id: params.id })
+        .then(dbThoughtData => res.json(dbThoughtData))
+        .catch(err => res.json(err));
     },
+    // deleteThoughts({ params }, res) {
+    //     Thoughts.findOneAndDelete({ _id: params.id })
+    //       .then(dbThoughtData => {
+    //         if (!dbThoughtData) {
+    //           res.status(404).json({ message: 'No thoughts found with that id!' });
+    //           return;
+    //         }
+    //         return User.findOneAndUpdate(
+    //           { _id: params.userId },
+    //           { $pull: { thoughts: params.Id } },
+    //           { new: true }
+    //         )
+    //       })
+    //       .then(dbUserData => {
+    //         if (!dbUserData) {
+    //           res.status(404).json({ message: 'No User found with this id!' });
+    //           return;
+    //         }
+    //         res.json(dbUserData);
+    //       })
+    //       .catch(err => res.json(err));
+    //   },
 
     createReaction({
         params,
