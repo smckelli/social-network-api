@@ -23,7 +23,7 @@ const thoughtController = {
     },
 
     // get one thought by id
-    getThoughtById({
+    getThoughtsById({
         params
     }, res) {
         Thoughts.findOne({
@@ -50,7 +50,7 @@ const thoughtController = {
     },
 
     // createThought
-    createThought({
+    createThoughts({
         body
     }, res) {
         Thoughts.create(body)
@@ -80,7 +80,7 @@ const thoughtController = {
     },
 
     // update thought by id
-    updateThought({
+    updateThoughts({
         params,
         body
     }, res) {
@@ -103,7 +103,7 @@ const thoughtController = {
     },
 
     // delete thought
-    deleteThought({
+    deleteThoughts({
         params
     }, res) {
         Thoughts.findOneAndDelete({
@@ -117,7 +117,7 @@ const thoughtController = {
                     return;
                 }
                 return User.findOneAndUpdate({
-                    _id: parmas.userId
+                    _id: params.userId
                 }, {
                     $pull: {
                         thoughts: params.Id
