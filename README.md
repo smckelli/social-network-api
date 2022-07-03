@@ -20,6 +20,10 @@ THEN I am able to successfully create and delete reactions to thoughts and add a
 
 ## Video Demonstration Links
 
+### Starting the Server
+
+https://drive.google.com/file/d/1L12C93OxnOsf5CPaU6tMYnZHWo81PSu8/view
+
 ### User Routes
 
 https://drive.google.com/file/d/1Ud1PTfS7B7FYNO9CyINO2pE11D4CFmZG/view
